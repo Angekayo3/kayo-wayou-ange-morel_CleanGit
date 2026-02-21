@@ -1,0 +1,22 @@
+name: Création et Sauvegarde d'Artefact
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-upload:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Créer le fichier build_info.txt
+        run: date > build_info.txt
+
+      - name: Sauvegarder l'artefact build_info.txt
+        uses: actions/upload-artifact@v3
+        with:
+          name: build-info-artifact  
+          path: build_info.txt       
